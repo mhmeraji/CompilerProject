@@ -1,0 +1,11 @@
+myBoolean := true
+myBoolean2 := false
+
+result_1 := myBoolean and myBoolean2
+
+result_2 := not result_1
+
+true = result_1 or result_2
+
+if ((not (result_1 xor result_2)) xnor result_1)
+    print(result_1)
