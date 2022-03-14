@@ -1,0 +1,9 @@
+a <= bVariable
+
+c := -05.2340000
+
+c := c + 1
+
+
+myVarible212 := 1 - 4
+myVarible212 = -3
