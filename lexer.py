@@ -5,10 +5,11 @@ from ply import lex
 class Lexer:
 
     tokens = [
-        'PROGRAM', 'VAR', 'PROCEDURE', 'BEGIN', 'END', 'THEN', 'DO', "NOTEQ"
-        'IF', 'WHILE', 'PRINT', 'ELSE',
+        'PROGRAM', 'VAR', 'PROCEDURE', 'BEGIN', 'END', 'THEN', 'DO', "NOTEQ",
+        'COMMA', 'COLON', 'IF', 'WHILE', 'PRINT', 'ELSE',
         'LRB', 'RRB', 'LCB', 'RCB',
         'INTEGER', 'SUM', 'SUB', 'MUL', 'DIV',
+        'INT_KW', 'FLOAT_KW',
         'LT', 'GT', 'SEMICOLON', 
         'FLOAT', 'IDENTIFIER', 'MOD',
         'EQUAL', 'GTE', 'LTE', 'ASSIGN',
@@ -17,6 +18,8 @@ class Lexer:
 
     # COLONS
     t_SEMICOLON = r';'
+    t_COLON = r':'
+    t_COMMA = r','
     # BRACKETS 
     t_LRB = r'\('
     t_RRB = r'\)'
@@ -35,6 +38,14 @@ class Lexer:
     t_EQUAL = r'\='
     t_ASSIGN = r'\:\='
     t_NOTEQ = r'\<\>'
+
+    def t_INT_KW(self, t):
+        r'int'
+        return t
+    
+    def t_FLOAT_KW(self, t):
+        r'float'
+        return t
 
     def t_DO(self, t):
         r'do'
