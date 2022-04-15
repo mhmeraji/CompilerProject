@@ -1,0 +1,7 @@
+program myProgram
+
+begin 
+
+this := 1
+
+end

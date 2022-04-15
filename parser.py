@@ -118,9 +118,6 @@ class Parser:
 
     def p_exp_integer(self, p):
         """exp : INTEGER"""
-        print("AAAAAAAAAAAAAAAaa")
-        print(p)
-        print(p.value)
         pass
 
     def p_exp_float(self, p):
