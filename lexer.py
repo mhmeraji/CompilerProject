@@ -5,6 +5,7 @@ from ply import lex
 class Lexer:
 
     tokens = [
+        'PROGRAM', 'VAR', 'PROCEDURE', 'BEGIN', 'END', 'THEN', 'DO', "NOTEQ"
         'IF', 'WHILE', 'PRINT', 'ELSE',
         'LRB', 'RRB', 'LCB', 'RCB',
         'INTEGER', 'SUM', 'SUB', 'MUL', 'DIV',
@@ -33,6 +34,35 @@ class Lexer:
     t_MOD = r'\%'
     t_EQUAL = r'\='
     t_ASSIGN = r'\:\='
+    t_NOTEQ = r'\<\>'
+
+    def t_DO(self, t):
+        r'do'
+        return t
+    
+    def t_THEN(self, t):
+        r'then'
+        return t 
+
+    def t_END(self, t):
+        r'end'
+        return t
+    
+    def t_BEGIN(self, t):
+        r'begin'
+        return t
+    
+    def t_PROCEDURE(self, t):
+        r'procedure'
+        return t
+    
+    def t_VAR(self, t):
+        r'var'
+        return t
+    
+    def t_PROGRAM(self, t):
+        r'program'
+        return t
 
     def t_IF(self, t):
         r'if'
