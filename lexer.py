@@ -1,4 +1,3 @@
-from pickle import FALSE, TRUE
 from re import T
 from ply import lex
 
@@ -6,15 +5,14 @@ class Lexer:
 
     tokens = [
         'PROGRAM', 'VAR', 'PROCEDURE', 'BEGIN', 'END', 'THEN', 'DO', "NOTEQ",
-        'COMMA', 'COLON', 'IF', 'WHILE', 'PRINT', 'ELSE',
-        'LRB', 'RRB', 'LCB', 'RCB',
+        'COMMA', 'COLON', 'IF', 'WHILE', 'ELSE',
+        'LRB', 'RRB',
         'INTEGER', 'SUM', 'SUB', 'MUL', 'DIV',
         'INT_KW', 'FLOAT_KW',
         'LT', 'GT', 'SEMICOLON', 
         'FLOAT', 'IDENTIFIER', 'MOD',
         'EQUAL', 'GTE', 'LTE', 'ASSIGN',
-        'TRUE', 'FALSE', 'AND', 'OR', 'NOT', 
-        'XOR', 'XNOR']
+        'TRUE', 'FALSE', 'AND', 'OR', 'NOT']
 
     # COLONS
     t_SEMICOLON = r';'
@@ -23,8 +21,6 @@ class Lexer:
     # BRACKETS 
     t_LRB = r'\('
     t_RRB = r'\)'
-    t_LCB = r'\{'
-    t_RCB = r'\}'
     # OPERATOR
     t_SUM = r'\+'
     t_SUB = r'\-'
@@ -87,10 +83,6 @@ class Lexer:
         r'while'
         return t
 
-    def t_PRINT(self, t):
-        r'print'
-        return t
-
     def t_AND(self, t):
         r'and'
         return t
@@ -101,14 +93,6 @@ class Lexer:
 
     def t_NOT(self, t):
         r'not'
-        return t
-
-    def t_XOR(self, t):
-        r'xor'
-        return t
-
-    def t_XNOR(self, t):
-        r'xnor'
         return t
 
     def t_FLOAT(self, t):
@@ -127,12 +111,12 @@ class Lexer:
 
     def t_TRUE(self, t):
         r'true'
-        t.value = TRUE
+        t.value = True
         return t
     
     def t_FALSE(self, t):
         r'false'
-        t.value = FALSE
+        t.value = False
         return t
     
     # Define a rule so we can track line numbers
