@@ -2,6 +2,10 @@ program myProgram
 
 begin 
 
-this := (1 * 2) + (5.1212 / 2.123)
+this := (1 * 2) + (5.1212 / 2.123) :
+
+if this 
+then my_variable := 123 
+else another := 121
 
 end
