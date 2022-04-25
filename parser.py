@@ -156,7 +156,8 @@ class Parser:
         ('left', "MOD"),
         ('left', "SUM", "SUB"),
         ('left', "MUL", "DIV"),
-        ('left', "IF", "THEN", "ELSE"),
+        ('left', "IF", "THEN"),
+        ('left', "ELSE"),
     )
 
     def p_error(self, p):

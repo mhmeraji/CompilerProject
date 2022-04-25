@@ -1614,11 +1614,11 @@ state 73
     (19) stmt -> IF exp THEN stmt . ELSE stmt
     (20) stmt -> IF exp THEN stmt .
 
+    ELSE            shift and go to state 92
     END             reduce using rule 20 (stmt -> IF exp THEN stmt .)
     COLON           reduce using rule 20 (stmt -> IF exp THEN stmt .)
-    ELSE            reduce using rule 20 (stmt -> IF exp THEN stmt .)
 
-  ! ELSE            [ shift and go to state 92 ]
+  ! ELSE            [ reduce using rule 20 (stmt -> IF exp THEN stmt .) ]
 
 
 state 74
