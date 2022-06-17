@@ -1,7 +1,7 @@
 from lexer import Lexer
 from parser import Parser
 lexer = Lexer().build()
-file = open('/home/mhmeraji/University_Projects/CompilerProject/test_1.txt')
+file = open('/home/mhmeraji/University_Projects/CompilerProject/parser_test_files/test_2.txt')
 text_input = file.read()
 print("File Content : ", text_input)
 file.close()

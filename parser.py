@@ -1,20 +1,26 @@
 from ply import yacc
 from lexer import Lexer
+from codeGenerator import CodeGenerator
 
 class Parser:
 
     tokens = Lexer().tokens
 
-    def __init__(self) -> None:
-        pass
+    def __init__(self):
+        self.tempCount = 0
+        self.quad = 0
+        self.codeGenerator = CodeGenerator()
 
     def p_program(self, p):
         """program : PROGRAM IDENTIFIER declarations proclist cmp_stmt"""
         pass
 
-    def p_declarations(self, p):
-        """declarations :
-                        | VAR declist"""
+    def p_dec_empty(self, p):
+        """declarations : """
+        pass
+
+    def p_dec_declist(self, p):
+        """declarations : VAR declist"""
         pass
     
     def p_declist_idlist(self, p):
@@ -22,7 +28,7 @@ class Parser:
         pass
     
     def p_declist_declist(self, p):
-        """declist : declist COLON idlist COLON type"""
+        """declist : declist SEMICOLON idlist COLON type"""
         pass
 
     def p_idlist_id(self, p):
@@ -64,12 +70,12 @@ class Parser:
         pass
 
     def p_stmtlist_stmtlist(self, p):
-        """stmtlist : stmtlist COLON stmt"""
+        """stmtlist : stmtlist SEMICOLON stmt"""
         pass
 
     def p_stmt_id(self, p):
         """stmt : IDENTIFIER ASSIGN exp"""
-        pass
+        # self.codeGenerator.generate_exp_assign_code(p, self.next_quad(), self.next_quad(), self.next_quad())
 
     def p_stmt_if_then_else(self, p):
         """stmt : IF exp THEN stmt ELSE stmt"""
@@ -129,13 +135,7 @@ class Parser:
         pass
 
     def p_exp_operator(self, p):
-        """exp : exp SUM exp
-               | exp SUB exp 
-               | exp MUL exp
-               | exp DIV exp
-               | SUB exp
-               | exp MOD exp 
-               | exp LT exp 
+        """exp : exp LT exp 
                | exp LTE exp
                | exp EQUAL exp 
                | exp NOTEQ exp
@@ -146,6 +146,21 @@ class Parser:
                | NOT exp
                | LRB exp RRB"""
         pass
+
+    def p_exp_arithmetic(self, p):
+        """
+        exp : exp SUM exp
+        exp : exp SUB exp
+        exp : exp DIV exp
+        exp : exp MOD exp
+        exp : exp MUL exp
+        """
+        # self.codeGenerator.generate_exp_arithmetic_code(p, self.new_temp(), self.new_temp(), self.new_temp(), self.next_quad(), self.next_quad(), self.next_quad(), self.next_quad(), self.next_quad(), self.next_quad())
+
+    def p_exp_sub(self, p):
+        "exp : SUB exp"
+        pass
+        # self.codeGenerator.generate_exp_sub_code(p, self.new_temp(), self.new_temp(), self.next_quad(), self.next_quad(), self.next_quad())
 
     precedence = (
         ('left', "OR"),
@@ -159,6 +174,16 @@ class Parser:
         ('left', "IF", "THEN"),
         ('left', "ELSE"),
     )
+
+    def new_temp(self):
+        temp = "T" + str(self.tempCount)
+        self.tempCount += 1
+        return temp
+
+    def next_quad(self):
+        temp = 'L' + str(self.quad)
+        self.quad += 1
+        return temp
 
     def p_error(self, p):
         print(p.value)
