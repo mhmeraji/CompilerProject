@@ -1,0 +1,30 @@
+program myProgram
+
+var this, that, result : int;
+his, that, result : float;
+
+procedure proc_identifier (input , index : float;): 
+var this, that, result : int;
+begin
+
+that := 1 + 1;
+this := 1 * 1;
+result := this - that;
+
+if this 
+then my_variable := 123 
+else while (this and that) do this := this + 1
+
+end
+
+
+begin 
+
+
+that := 1 + 1;
+this := 1 * 1;
+result := this - that;
+
+proc_identifier (this, that, result)
+
+end

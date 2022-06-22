@@ -1,6 +1,6 @@
 program myProgram
 
-var this, that, result : int
+var this, that, result : int;
 
 begin 
 

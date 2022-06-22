@@ -18,18 +18,18 @@ class Parser:
         pass
 
     def p_dec_declist(self, p):
-        """declarations : VAR declist"""
+        """declarations : VAR declist """
         print("declarations : VAR declist")
         pass
     
     def p_declist_idlist(self, p):
-        """declist : idlist COLON type"""
-        print("declist : idlist COLON type")
+        """declist : idlist COLON type SEMICOLON"""
+        print("declist : idlist COLON type SEMICOLON")
         pass
     
     def p_declist_declist(self, p):
-        """declist : declist SEMICOLON idlist COLON type"""
-        print("declist : declist SEMICOLON idlist COLON type")
+        """declist : declist idlist COLON type SEMICOLON"""
+        print("declist : declist idlist COLON type SEMICOLON")
         pass
 
     def p_idlist_id(self, p):
@@ -52,14 +52,14 @@ class Parser:
         print("type : FLOAT_KW")
         pass
 
+    def p_proclist_proclist(self, p):
+        """proclist : proc proclist"""
+        print("proclist : | proclist  proc")
+        pass
+
     def p_proclist_empty(self, p):
         """proclist : """
         print("proclist : empty")
-        pass
-
-    def p_proclist_proclist(self, p):
-        """proclist : proclist  proc"""
-        print("proclist : | proclist  proc")
         pass
 
     def p_proc(self, p):

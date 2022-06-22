@@ -2,8 +2,8 @@ program myProgram
 
 begin 
 
-this := (1 * 2) + (5.1212 / 2.123) :
-that := 1.2323 :
+this := (1 * 2) + (5.1212 / 2.123);
+that := 1.2323;
 
 if this 
 then my_variable := 123 
