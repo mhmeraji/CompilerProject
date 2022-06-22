@@ -1,5 +1,7 @@
 from ply import yacc
 from lexer import Lexer
+from nonTerminal import nonTerminal
+from codeGenerator import codeGenerator
 
 class Parser:
 
@@ -7,6 +9,7 @@ class Parser:
 
     def __init__(self):
         self.tempCount = 0
+        self.codeGenerator = codeGenerator()
 
     def p_program(self, p):
         """program : PROGRAM IDENTIFIER declarations proclist cmp_stmt"""
@@ -90,6 +93,8 @@ class Parser:
 
     def p_stmt_id(self, p):
         """stmt : IDENTIFIER ASSIGN exp"""
+        p[1] = nonTerminal()
+        p[1].value = p[3].value
         print("stmt : IDENTIFIER ASSIGN exp")
         pass
 
@@ -151,16 +156,22 @@ class Parser:
     def p_exp_integer(self, p):
         """exp : INTEGER"""
         print("exp : INTEGER")
+        p[0] = nonTerminal()
+        p[0].value = p[1]
         pass
 
     def p_exp_float(self, p):
         """exp : FLOAT"""
         print("exp : FLOAT")
+        p[0] = nonTerminal()
+        p[0].value = p[1]
         pass
 
     def p_exp_id(self, p):
         """exp : IDENTIFIER"""
         print("exp : IDENTIFIER")
+        p[0] = nonTerminal()
+        p[0].value = p[1]
         pass
 
     def p_exp_operator(self, p):
@@ -175,6 +186,8 @@ class Parser:
                | NOT exp
                | LRB exp RRB"""
         print("exp : exp LT exp | exp LTE exp| exp EQUAL exp | exp NOTEQ exp| exp GT exp| exp GTE exp | exp AND exp| exp OR exp| NOT exp| LRB exp RRB")
+        p[0] = nonTerminal()
+        p[0].value = p[2]
         pass
 
     def p_exp_arithmetic(self, p):
@@ -186,6 +199,7 @@ class Parser:
             | exp MUL exp
         """
         print("exp : exp SUM exp | exp SUB exp | exp DIV exp | exp MOD exp | exp MUL exp")
+        self.codeGenerator.generate_arithmetic_code(p, self.new_temp())
         pass
 
     def p_exp_sub(self, p):
